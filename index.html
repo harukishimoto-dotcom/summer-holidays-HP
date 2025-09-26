@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>レトロ・ポートフォリオ</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- キャラクター + セリフ -->
+  <div class="avatar-box">
+    <img src="avatar.png" alt="案内人" class="avatar">
+    <div class="speech-bubble">
+      <p>こんにちは！ポートフォリオの世界へ案内するよ！</p>
+    </div>
+  </div>
+
+  <!-- スタート画面 -->
+  <div id="start-screen">
+    <button id="start-btn">▶ スタート</button>
+  </div>
+
+  <!-- 出来事一覧 -->
+  <div id="event-list" class="hidden">
+    <h2>知りたい出来事一覧</h2>
+    <div class="button-grid">
+      <a href="news.html" class="retro-btn">日本に帰った話</a>
+      <a href="science.html" class="retro-btn">パリに行った話</a>
+      <a href="art.html" class="retro-btn">エディンバラに行った話</a>
+      <a href="space.html" class="retro-btn">プーカントリー</a>
+      <a href="ai.html" class="retro-btn">ブルーベル鉄道</a>
+    </div>
+  </div>
+
+  <!-- サウンド -->
+  <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+  <audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
