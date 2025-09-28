@@ -10,18 +10,14 @@ const bgmToggle = document.getElementById("bgm-toggle");
 // BGMの状態
 let bgmPlaying = true;
 
-// --------------------
 // クリック音再生関数
-// --------------------
 function playClick() {
   const sound = document.getElementById("click-sound");
-  const clone = sound.cloneNode();  // <audio> を複製
-  clone.play();                     // これで連打可能
+  const clone = sound.cloneNode();  
+  clone.play();                     
 }
 
-// --------------------
 // スタートボタン
-// --------------------
 if (startBtn) {
   startBtn.addEventListener("click", () => {
     playClick();
@@ -35,9 +31,7 @@ if (startBtn) {
   });
 }
 
-// --------------------
 // メニュー → サブコンテンツ切り替え
-// --------------------
 buttons.forEach(btn => {
   btn.addEventListener("click", () => {
     playClick();
@@ -47,9 +41,7 @@ buttons.forEach(btn => {
   });
 });
 
-// --------------------
 // サブコンテンツ → メニュー戻る
-// --------------------
 backButtons.forEach(btn => {
   btn.addEventListener("click", () => {
     playClick();
@@ -58,9 +50,7 @@ backButtons.forEach(btn => {
   });
 });
 
-// --------------------
 // BGM ON/OFF切り替え
-// --------------------
 if (bgmToggle) {
   bgmToggle.addEventListener("click", () => {
     playClick();
