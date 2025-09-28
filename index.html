@@ -3,8 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <title>レトロ・ポートフォリオ</title>
-  <link rel="stylesheet" href="style.css">
+  <!-- Googleフォント -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: lime;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+      padding: 2em;
+    }
+    /* キャラと吹き出し */
+    .avatar-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1em;
+      margin-bottom: 2em;
+    }
+    .avatar {
+      width: 100px;
+      image-rendering: pixelated;
+      animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .speech-bubble {
+      background-color: #222;
+      border: 2px solid #0f0;
+      padding: 1em;
+      max-width: 300px;
+    }
+    /* ボタン */
+    button, .retro-btn {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #222;
+      color: #0f0;
+      border: 2px solid #0f0;
+      padding: 1em 2em;
+      margin: 1em;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    button:hover, .retro-btn:hover {
+      background-color: #0f0;
+      color: #000;
+    }
+    #start-btn {
+      animation: blink 1s step-start infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .hidden { display: none; }
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .button-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    @media (max-width: 600px) {
+      button, .retro-btn {
+        font-size: 0.8rem;
+        padding: 0.8em 1.5em;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- キャラクター + セリフ -->
@@ -36,6 +109,21 @@
   <audio id="click-sound" src="click.mp3" preload="auto"></audio>
   <audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
 
-  <script src="script.js"></script>
+  <script>
+    const sound = document.getElementById("click-sound");
+    const bgm = document.getElementById("bgm");
+    const startBtn = document.getElementById("start-btn");
+    const startScreen = document.getElementById("start-screen");
+    const eventList = document.getElementById("event-list");
+
+    startBtn.addEventListener("click", () => {
+      sound.play();
+      bgm.volume = 0.5;
+      bgm.play();
+      startScreen.classList.add("hidden");
+      eventList.classList.remove("hidden");
+      eventList.classList.add("fade-in");
+    });
+  </script>
 </body>
 </html>
