@@ -5,8 +5,12 @@ const startScreen = document.getElementById("start-screen");
 const menu = document.getElementById("menu");
 const buttons = document.querySelectorAll("[data-target]");
 const backButtons = document.querySelectorAll(".back-btn");
+const bgmControls = document.getElementById("bgm-controls");
+const bgmToggle = document.getElementById("bgm-toggle");
 
-// スタートボタンでメニュー表示 + BGM再生
+let bgmPlaying = true; // BGM初期状態は再生中
+
+// スタートボタン
 if (startBtn) {
   startBtn.addEventListener("click", () => {
     clickSound.play();
@@ -14,6 +18,7 @@ if (startBtn) {
     bgm.play().catch(()=>{});
     startScreen.classList.add("hidden");
     menu.classList.remove("hidden");
+    bgmControls.classList.remove("hidden"); // BGMボタン表示
   });
 }
 
@@ -35,3 +40,17 @@ backButtons.forEach(btn => {
     menu.classList.remove("hidden");
   });
 });
+
+// BGM ON/OFF切り替え
+if (bgmToggle) {
+  bgmToggle.addEventListener("click", () => {
+    if (bgmPlaying) {
+      bgm.pause();
+      bgmPlaying = false;
+    } else {
+      bgm.play().catch(()=>{});
+      bgmPlaying = true;
+    }
+    clickSound.play();
+  });
+}
