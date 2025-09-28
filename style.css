@@ -1,12 +1,18 @@
+/* --------------------
+   基本設定
+-------------------- */
 body {
   background-color: black;
   color: lime;
   font-family: 'Press Start 2P', cursive;
   text-align: center;
   padding: 2em;
+  margin: 0;
 }
 
-/* キャラと吹き出し */
+/* --------------------
+   キャラクター + 吹き出し
+-------------------- */
 .avatar-box {
   display: flex;
   justify-content: center;
@@ -34,7 +40,9 @@ body {
   animation: fadeIn 1.5s ease forwards;
 }
 
-/* ボタン */
+/* --------------------
+   ボタン
+-------------------- */
 button, .retro-btn {
   font-family: 'Press Start 2P', cursive;
   background-color: #222;
@@ -60,7 +68,9 @@ button:hover, .retro-btn:hover {
   50% { opacity: 0; }
 }
 
-/* レイアウト */
+/* --------------------
+   レイアウト・アニメーション
+-------------------- */
 .hidden {
   display: none;
 }
@@ -80,7 +90,9 @@ button:hover, .retro-btn:hover {
   align-items: center;
 }
 
-/* モバイル対応 */
+/* --------------------
+   モバイル対応
+-------------------- */
 @media (max-width: 600px) {
   button, .retro-btn {
     font-size: 0.8rem;
