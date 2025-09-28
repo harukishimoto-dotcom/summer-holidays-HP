@@ -66,6 +66,10 @@ button:hover, .retro-btn:hover {
 
 @keyframes blink { 50% { opacity: 0; } }
 
+#bgm-controls {
+  margin-top: 1em;
+}
+
 /* --------------------
    レイアウト・アニメーション
 -------------------- */
