@@ -1,5 +1,4 @@
 const bgm = document.getElementById("bgm");
-const clickSound = document.getElementById("click-sound");
 const startBtn = document.getElementById("start-btn");
 const startScreen = document.getElementById("start-screen");
 const menu = document.getElementById("menu");
@@ -8,42 +7,63 @@ const backButtons = document.querySelectorAll(".back-btn");
 const bgmControls = document.getElementById("bgm-controls");
 const bgmToggle = document.getElementById("bgm-toggle");
 
-let bgmPlaying = true; // BGM初期状態は再生中
+// BGMの状態
+let bgmPlaying = true;
 
+// --------------------
+// クリック音再生関数
+// --------------------
+function playClick() {
+  const sound = document.getElementById("click-sound");
+  const clone = sound.cloneNode();  // <audio> を複製
+  clone.play();                     // これで連打可能
+}
+
+// --------------------
 // スタートボタン
+// --------------------
 if (startBtn) {
   startBtn.addEventListener("click", () => {
-    clickSound.play();
-    bgm.volume = 0.5;
-    bgm.play().catch(()=>{});
+    playClick();
+    if (bgm) {
+      bgm.volume = 0.5;
+      bgm.play().catch(()=>{});
+    }
     startScreen.classList.add("hidden");
     menu.classList.remove("hidden");
-    bgmControls.classList.remove("hidden"); // BGMボタン表示
+    if (bgmControls) bgmControls.classList.remove("hidden");
   });
 }
 
+// --------------------
 // メニュー → サブコンテンツ切り替え
+// --------------------
 buttons.forEach(btn => {
   btn.addEventListener("click", () => {
-    clickSound.play();
+    playClick();
     const target = btn.dataset.target;
     menu.classList.add("hidden");
     document.getElementById(target).classList.remove("hidden");
   });
 });
 
+// --------------------
 // サブコンテンツ → メニュー戻る
+// --------------------
 backButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-    clickSound.play();
+    playClick();
     btn.parentElement.classList.add("hidden");
     menu.classList.remove("hidden");
   });
 });
 
+// --------------------
 // BGM ON/OFF切り替え
+// --------------------
 if (bgmToggle) {
   bgmToggle.addEventListener("click", () => {
+    playClick();
     if (bgmPlaying) {
       bgm.pause();
       bgmPlaying = false;
@@ -51,6 +71,5 @@ if (bgmToggle) {
       bgm.play().catch(()=>{});
       bgmPlaying = true;
     }
-    clickSound.play();
   });
 }
