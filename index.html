@@ -3,99 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>レトロ・ポートフォリオ</title>
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <style>
-    /* --------------------
-       基本設定
-    -------------------- */
-    body {
-      background-color: black;
-      color: lime;
-      font-family: 'Press Start 2P', cursive;
-      text-align: center;
-      padding: 2em;
-      margin: 0;
-    }
-
-    /* --------------------
-       キャラクター + 吹き出し
-    -------------------- */
-    .avatar-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1em;
-      margin-bottom: 2em;
-    }
-
-    .avatar {
-      width: 100px;
-      image-rendering: pixelated;
-      animation: float 2s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    .speech-bubble {
-      background-color: #222;
-      border: 2px solid #0f0;
-      padding: 1em;
-      max-width: 300px;
-      animation: fadeIn 1.5s ease forwards;
-    }
-
-    /* --------------------
-       ボタン
-    -------------------- */
-    button, .retro-btn {
-      font-family: 'Press Start 2P', cursive;
-      background-color: #222;
-      color: #0f0;
-      border: 2px solid #0f0;
-      padding: 1em 2em;
-      margin: 1em;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-
-    button:hover, .retro-btn:hover {
-      background-color: #0f0;
-      color: #000;
-    }
-
-    #start-btn {
-      animation: blink 1s step-start infinite;
-    }
-
-    @keyframes blink { 50% { opacity: 0; } }
-
-    /* --------------------
-       レイアウト・アニメーション
-    -------------------- */
-    .hidden { display: none; }
-
-    .fade-in { animation: fadeIn 1s ease forwards; }
-
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .button-grid { display: flex; flex-direction: column; align-items: center; }
-
-    /* --------------------
-       モバイル対応
-    -------------------- */
-    @media (max-width: 600px) {
-      button, .retro-btn { font-size: 0.8rem; padding: 0.8em 1.5em; }
-    }
-  </style>
 </head>
 <body>
 
   <!-- BGM -->
-  <audio id="bgm" src="bgm.mp3" loop autoplay></audio>
+  <audio id="bgm" src="bgm.mp3" loop></audio>
   <audio id="click-sound" src="click.mp3" preload="auto"></audio>
 
   <!-- キャラクター + 吹き出し -->
@@ -106,8 +20,13 @@
     </div>
   </div>
 
+  <!-- スタート画面 -->
+  <div id="start-screen">
+    <button id="start-btn">▶ スタート</button>
+  </div>
+
   <!-- メニュー画面 -->
-  <div id="menu">
+  <div id="menu" class="hidden">
     <h2>知りたい出来事一覧</h2>
     <div class="button-grid">
       <button data-target="news" class="retro-btn">日本に帰った話</button>
@@ -144,37 +63,6 @@
     <button class="retro-btn back-btn">◀ 戻る</button>
   </div>
 
-  <script>
-    const bgm = document.getElementById("bgm");
-    const clickSound = document.getElementById("click-sound");
-    const buttons = document.querySelectorAll("[data-target]");
-    const backButtons = document.querySelectorAll(".back-btn");
-
-    // メニュー → サブコンテンツ切り替え
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        clickSound.play();
-        const target = btn.dataset.target;
-        document.getElementById("menu").classList.add("hidden");
-        document.getElementById(target).classList.remove("hidden");
-      });
-    });
-
-    // サブコンテンツ → メニュー戻る
-    backButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        clickSound.play();
-        btn.parentElement.classList.add("hidden");
-        document.getElementById("menu").classList.remove("hidden");
-      });
-    });
-
-    // BGM自動再生（ボリューム調整）
-    window.addEventListener("load", () => {
-      bgm.volume = 0.5;
-      bgm.play().catch(()=>{ /* ブラウザ自動再生制限対策 */ });
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
