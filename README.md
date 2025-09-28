@@ -5,18 +5,18 @@ SPA方式で作られており、スタートボタン、BGMのON/OFF、各サ�
 
 ## 構成
 
-retro-portfolio/
-├─ index.html ← メインページ（SPA方式）
-├─ style.css ← CSSスタイル
-├─ script.js ← JavaScript
-├─ avatar.png ← キャラクター画像
-├─ bgm.mp3 ← BGM
-├─ click.mp3 ← ボタンクリック音
-├─ japan.jpg ← サブコンテンツ画像（日本に帰った話）
-├─ paris.jpg ← サブコンテンツ画像（パリ旅行）
-├─ edinburgh.jpg ← サブコンテンツ画像（エディンバラ）
-├─ pooh.jpg ← サブコンテンツ画像（プーさんと会った話）
-└─ railway.jpg ← サブコンテンツ画像（ブルーベル鉄道）
+retro-portfolio/<br>
+├─ index.html ← メインページ（SPA方式）<br>
+├─ style.css ← CSSスタイル<br>
+├─ script.js ← JavaScript<br>
+├─ avatar.png ← キャラクター画像<br>
+├─ bgm.mp3 ← BGM<br>
+├─ click.mp3 ← ボタンクリック音<br>
+├─ japan.jpg ← サブコンテンツ画像（日本に帰った話）<br>
+├─ paris.jpg ← サブコンテンツ画像（パリ旅行）<br>
+├─ edinburgh.jpg ← サブコンテンツ画像（エディンバラ）<br>
+├─ pooh.jpg ← サブコンテンツ画像（プーさんと会った話）<br>
+└─ railway.jpg ← サブコンテンツ画像（ブルーベル鉄道）<br>
 
 ## 特徴
 
