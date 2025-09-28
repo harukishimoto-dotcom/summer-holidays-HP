@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <title>レトロ・ポートフォリオ</title>
-  <!-- Googleフォント -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
+    /* --------------------
+       基本設定
+    -------------------- */
     body {
       background-color: black;
       color: lime;
       font-family: 'Press Start 2P', cursive;
       text-align: center;
       padding: 2em;
+      margin: 0;
     }
-    /* キャラと吹き出し */
+
+    /* --------------------
+       キャラクター + 吹き出し
+    -------------------- */
     .avatar-box {
       display: flex;
       justify-content: center;
@@ -21,22 +27,29 @@
       gap: 1em;
       margin-bottom: 2em;
     }
+
     .avatar {
       width: 100px;
       image-rendering: pixelated;
       animation: float 2s ease-in-out infinite;
     }
+
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
+
     .speech-bubble {
       background-color: #222;
       border: 2px solid #0f0;
       padding: 1em;
       max-width: 300px;
+      animation: fadeIn 1.5s ease forwards;
     }
-    /* ボタン */
+
+    /* --------------------
+       ボタン
+    -------------------- */
     button, .retro-btn {
       font-family: 'Press Start 2P', cursive;
       background-color: #222;
@@ -48,82 +61,120 @@
       display: inline-block;
       transition: all 0.3s ease;
     }
+
     button:hover, .retro-btn:hover {
       background-color: #0f0;
       color: #000;
     }
+
     #start-btn {
       animation: blink 1s step-start infinite;
     }
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* --------------------
+       レイアウト・アニメーション
+    -------------------- */
     .hidden { display: none; }
-    .fade-in {
-      animation: fadeIn 1s ease forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .button-grid {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+
+    .fade-in { animation: fadeIn 1s ease forwards; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .button-grid { display: flex; flex-direction: column; align-items: center; }
+
+    /* --------------------
+       モバイル対応
+    -------------------- */
     @media (max-width: 600px) {
-      button, .retro-btn {
-        font-size: 0.8rem;
-        padding: 0.8em 1.5em;
-      }
+      button, .retro-btn { font-size: 0.8rem; padding: 0.8em 1.5em; }
     }
   </style>
 </head>
 <body>
-  <!-- キャラクター + セリフ -->
+
+  <!-- BGM -->
+  <audio id="bgm" src="bgm.mp3" loop autoplay></audio>
+  <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+
+  <!-- キャラクター + 吹き出し -->
   <div class="avatar-box">
     <img src="avatar.png" alt="案内人" class="avatar">
-    <div class="speech-bubble">
+    <div class="speech-bubble" id="speech">
       <p>こんにちは！ポートフォリオの世界へ案内するよ！</p>
     </div>
   </div>
 
-  <!-- スタート画面 -->
-  <div id="start-screen">
-    <button id="start-btn">▶ スタート</button>
-  </div>
-
-  <!-- 出来事一覧 -->
-  <div id="event-list" class="hidden">
+  <!-- メニュー画面 -->
+  <div id="menu">
     <h2>知りたい出来事一覧</h2>
     <div class="button-grid">
-      <a href="news.html" class="retro-btn">日本に帰った話</a>
-      <a href="science.html" class="retro-btn">パリに行った話</a>
-      <a href="art.html" class="retro-btn">エディンバラに行った話</a>
-      <a href="pooh.html" class="retro-btn">プーさんと会った話</a>
-      <a href="railway.html" class="retro-btn">ブルーベル鉄道を見に行った話</a>
+      <button data-target="news" class="retro-btn">日本に帰った話</button>
+      <button data-target="paris" class="retro-btn">パリに行った話</button>
+      <button data-target="edinburgh" class="retro-btn">エディンバラに行った話</button>
+      <button data-target="pooh" class="retro-btn">プーさんと会った話</button>
+      <button data-target="railway" class="retro-btn">ブルーベル鉄道を見に行った話</button>
     </div>
   </div>
 
-  <!-- サウンド -->
-  <audio id="click-sound" src="click.mp3" preload="auto"></audio>
-  <audio id="bgm" src="bgm.mp3" loop preload="auto"></audio>
+  <!-- サブコンテンツ -->
+  <div id="news" class="content hidden">
+    <p>日本に帰ったときのエピソードを書きます。</p>
+    <button class="retro-btn back-btn">◀ 戻る</button>
+  </div>
+
+  <div id="paris" class="content hidden">
+    <p>パリ旅行の思い出を書きます。</p>
+    <button class="retro-btn back-btn">◀ 戻る</button>
+  </div>
+
+  <div id="edinburgh" class="content hidden">
+    <p>エディンバラでの出来事を書きます。</p>
+    <button class="retro-btn back-btn">◀ 戻る</button>
+  </div>
+
+  <div id="pooh" class="content hidden">
+    <p>プーさんと出会ったエピソードを書きます。</p>
+    <button class="retro-btn back-btn">◀ 戻る</button>
+  </div>
+
+  <div id="railway" class="content hidden">
+    <p>ブルーベル鉄道での思い出を書きます。</p>
+    <button class="retro-btn back-btn">◀ 戻る</button>
+  </div>
 
   <script>
-    const sound = document.getElementById("click-sound");
     const bgm = document.getElementById("bgm");
-    const startBtn = document.getElementById("start-btn");
-    const startScreen = document.getElementById("start-screen");
-    const eventList = document.getElementById("event-list");
+    const clickSound = document.getElementById("click-sound");
+    const buttons = document.querySelectorAll("[data-target]");
+    const backButtons = document.querySelectorAll(".back-btn");
 
-    startBtn.addEventListener("click", () => {
-      sound.play();
+    // メニュー → サブコンテンツ切り替え
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        clickSound.play();
+        const target = btn.dataset.target;
+        document.getElementById("menu").classList.add("hidden");
+        document.getElementById(target).classList.remove("hidden");
+      });
+    });
+
+    // サブコンテンツ → メニュー戻る
+    backButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        clickSound.play();
+        btn.parentElement.classList.add("hidden");
+        document.getElementById("menu").classList.remove("hidden");
+      });
+    });
+
+    // BGM自動再生（ボリューム調整）
+    window.addEventListener("load", () => {
       bgm.volume = 0.5;
-      bgm.play();
-      startScreen.classList.add("hidden");
-      eventList.classList.remove("hidden");
-      eventList.classList.add("fade-in");
+      bgm.play().catch(()=>{ /* ブラウザ自動再生制限対策 */ });
     });
   </script>
+
 </body>
 </html>
